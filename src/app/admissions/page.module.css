@@ -1,0 +1,270 @@
+/* ── HERO ── */
+.hero {
+  background: linear-gradient(135deg, var(--primary-red) 0%, #7a0e0e 100%);
+  color: white;
+  padding: 6rem 2rem 5rem;
+  text-align: center;
+}
+
+.heroTitle {
+  font-size: 3.25rem;
+  font-weight: 900;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.heroSubtitle {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.88);
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* ── SECTIONS ── */
+.section {
+  padding: 5rem 2rem;
+}
+
+.sectionAlt {
+  background: var(--bg-light);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ── SECTION HEADING ── */
+.sectionLabel {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--primary-red);
+  display: block;
+  text-align: center;
+  margin-bottom: 0.4rem;
+}
+
+.sectionTitle {
+  font-size: 2.25rem;
+  font-weight: 900;
+  color: var(--text-main);
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.divider {
+  width: 55px;
+  height: 3px;
+  background: var(--primary-red);
+  border-radius: 2px;
+  margin: 0 auto 3rem;
+}
+
+/* ── ELIGIBILITY TABLE ── */
+.tableWrap {
+  overflow-x: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  margin-bottom: 3rem;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  font-size: 0.9rem;
+}
+
+.tableGroupHeader {
+  background: var(--primary-red);
+  color: white;
+}
+
+.tableGroupHeader td {
+  padding: 0.75rem 1.25rem;
+  font-weight: 800;
+  font-size: 0.8rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.table thead tr {
+  background: #1a1a1a;
+  color: white;
+}
+
+.table thead th {
+  padding: 1rem 1.25rem;
+  text-align: left;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.table tbody tr {
+  border-bottom: 1px solid var(--border-color);
+  transition: background 0.2s;
+}
+
+.table tbody tr:hover {
+  background: rgba(163, 21, 21, 0.03);
+}
+
+.table tbody td {
+  padding: 1rem 1.25rem;
+  color: var(--text-secondary);
+  vertical-align: top;
+  line-height: 1.5;
+}
+
+.table tbody td:first-child {
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.durationBadge {
+  display: inline-block;
+  background: rgba(163, 21, 21, 0.1);
+  color: var(--primary-red);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+/* ── ADMISSION STEPS ── */
+.stepsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  position: relative;
+}
+
+.stepsGrid::before {
+  content: "";
+  position: absolute;
+  top: 2.5rem;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: linear-gradient(to right, var(--primary-red), rgba(163, 21, 21, 0.2));
+  z-index: 0;
+}
+
+.stepCard {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.stepNumber {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--primary-red);
+  color: white;
+  font-size: 1.4rem;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.25rem;
+  box-shadow: 0 4px 16px rgba(163, 21, 21, 0.35);
+}
+
+.stepTitle {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 0.6rem;
+}
+
+.stepDesc {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+/* ── NOTICE CARD ── */
+.noticeCard {
+  background: white;
+  border-left: 4px solid var(--primary-red);
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  margin-top: 3rem;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.noticeIcon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.noticeText {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+.noticeText strong {
+  color: var(--text-main);
+}
+
+/* ── CTA ── */
+.cta {
+  background: var(--primary-red);
+  padding: 5rem 2rem;
+  text-align: center;
+  color: white;
+}
+
+.cta h2 {
+  font-size: 2.25rem;
+  font-weight: 900;
+  color: white;
+  margin-bottom: 0.75rem;
+}
+
+.cta p {
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 2rem;
+  font-size: 1rem;
+}
+
+.ctaButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .stepsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .stepsGrid::before {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .heroTitle {
+    font-size: 2.25rem;
+  }
+  .stepsGrid {
+    grid-template-columns: 1fr;
+  }
+  .sectionTitle {
+    font-size: 1.75rem;
+  }
+}
