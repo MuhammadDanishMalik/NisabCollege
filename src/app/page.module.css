@@ -293,8 +293,21 @@
 /* --- FACILITIES SECTION --- */
 .facilitiesSection {
   padding: 6rem 2rem;
-  background-color: var(--bg-white);
+  background: linear-gradient(135deg, #fafafa 0%, #f5f0ee 100%);
   text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.facilitiesSection::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23a31515' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  z-index: 0;
 }
 
 .facilitiesGrid {
@@ -303,46 +316,96 @@
   gap: 2rem;
   max-width: 1200px;
   margin: 3rem auto 0;
+  position: relative;
+  z-index: 1;
 }
 
 .facilityCard {
-  padding: 2.5rem;
+  position: relative;
+  padding: 2.5rem 2rem 3rem;
   background: white;
-  border: 1px solid var(--border-color);
-  border-radius: 16px;
-  transition: transform 0.3s, box-shadow 0.3s;
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 20px;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  overflow: hidden;
+  text-align: left;
 }
 
 .facilityCard:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  transform: translateY(-10px);
+  box-shadow: 0 20px 50px rgba(163,21,21,0.12), 0 8px 20px rgba(0,0,0,0.06);
   border-color: transparent;
 }
 
+.facilityNumber {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: rgba(163,21,21,0.06);
+  line-height: 1;
+  transition: color 0.4s ease;
+  pointer-events: none;
+}
+
+.facilityCard:hover .facilityNumber {
+  color: rgba(163,21,21,0.15);
+}
+
 .facilityIcon {
-  width: 70px;
-  height: 70px;
-  background: rgba(163,21,21,0.08);
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, rgba(163,21,21,0.08) 0%, rgba(163,21,21,0.15) 100%);
   color: var(--primary-red);
-  border-radius: 50%;
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2rem;
-  margin: 0 auto 1.5rem;
+  font-size: 1.75rem;
+  margin-bottom: 1.5rem;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.facilityCard:hover .facilityIcon {
+  transform: scale(1.1) rotate(-5deg);
+  background: linear-gradient(135deg, var(--primary-red) 0%, #c0392b 100%);
+  box-shadow: 0 8px 20px rgba(163,21,21,0.25);
+  filter: grayscale(1) brightness(10);
 }
 
 .facilityTitle {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   font-weight: 800;
   color: var(--text-main);
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
+  transition: color 0.3s ease;
+}
+
+.facilityCard:hover .facilityTitle {
+  color: var(--primary-red);
 }
 
 .facilityDesc {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: var(--text-secondary);
-  line-height: 1.6;
+  line-height: 1.7;
+}
+
+.facilityBar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-red) 0%, #e74c3c 100%);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.facilityCard:hover .facilityBar {
+  transform: scaleX(1);
 }
 
 /* --- NOTICE BOARD --- */

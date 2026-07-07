@@ -224,21 +224,51 @@ export default function HomePage() {
         <div className={styles.whyUsSubtitle}>CAMPUS LIFE</div>
         <h2 className={styles.sectionTitleDark}>World-Class Facilities</h2>
         <div className={styles.sectionDividerRed}></div>
+        <p style={{ color: "var(--text-secondary)", maxWidth: "650px", margin: "1.5rem auto 0", lineHeight: 1.7, fontSize: "1.05rem" }}>
+          Our purpose-built campus is designed to deliver hands-on, practical education in a safe and modern environment.
+        </p>
         <div className={styles.facilitiesGrid}>
           <div className={styles.facilityCard}>
+            <div className={styles.facilityNumber}>01</div>
             <div className={styles.facilityIcon}>🔬</div>
             <h3 className={styles.facilityTitle}>Advanced Laboratories</h3>
-            <p className={styles.facilityDesc}>Fully equipped radiology and pathology labs for hands-on, practical training under expert supervision.</p>
+            <p className={styles.facilityDesc}>Fully equipped radiology, pathology, and physiotherapy labs for hands-on clinical training under expert supervision.</p>
+            <div className={styles.facilityBar}></div>
           </div>
           <div className={styles.facilityCard}>
+            <div className={styles.facilityNumber}>02</div>
             <div className={styles.facilityIcon}>📚</div>
             <h3 className={styles.facilityTitle}>Digital Library</h3>
-            <p className={styles.facilityDesc}>Access to thousands of physical and digital medical journals, research papers, and textbooks.</p>
+            <p className={styles.facilityDesc}>Access to thousands of physical and digital medical journals, research papers, textbooks, and online databases.</p>
+            <div className={styles.facilityBar}></div>
           </div>
           <div className={styles.facilityCard}>
+            <div className={styles.facilityNumber}>03</div>
             <div className={styles.facilityIcon}>🚌</div>
             <h3 className={styles.facilityTitle}>Transport Facility</h3>
-            <p className={styles.facilityDesc}>Safe and reliable college transport available for students commuting from nearby cities and villages.</p>
+            <p className={styles.facilityDesc}>Safe and reliable college transport available for students commuting from nearby cities and villages across the district.</p>
+            <div className={styles.facilityBar}></div>
+          </div>
+          <div className={styles.facilityCard}>
+            <div className={styles.facilityNumber}>04</div>
+            <div className={styles.facilityIcon}>🏥</div>
+            <h3 className={styles.facilityTitle}>Hospital Rotations</h3>
+            <p className={styles.facilityDesc}>Mandatory clinical placements at DHQ Hospital and partner clinics ensure real-world patient care experience from Year 1.</p>
+            <div className={styles.facilityBar}></div>
+          </div>
+          <div className={styles.facilityCard}>
+            <div className={styles.facilityNumber}>05</div>
+            <div className={styles.facilityIcon}>🕌</div>
+            <h3 className={styles.facilityTitle}>Prayer Hall & Common Room</h3>
+            <p className={styles.facilityDesc}>Dedicated prayer facility and comfortable common rooms for students to relax, study, and connect between lectures.</p>
+            <div className={styles.facilityBar}></div>
+          </div>
+          <div className={styles.facilityCard}>
+            <div className={styles.facilityNumber}>06</div>
+            <div className={styles.facilityIcon}>💻</div>
+            <h3 className={styles.facilityTitle}>Computer Lab & Wi-Fi</h3>
+            <p className={styles.facilityDesc}>Modern computer lab with high-speed internet access available campus-wide for research, assignments, and online learning.</p>
+            <div className={styles.facilityBar}></div>
           </div>
         </div>
       </section>
