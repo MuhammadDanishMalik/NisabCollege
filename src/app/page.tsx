@@ -277,12 +277,14 @@ export default function HomePage() {
                 <img src={img} alt={`Campus photo ${i + 1}`} loading="lazy" />
               </div>
             ))}
-            {/* Duplicate for infinite loop */}
-            {galleryImages.map((img, i) => (
-              <div key={`g2-${i}`} className={styles.galleryMarqueeItem}>
-                <img src={img} alt={`Campus photo ${i + 1} duplicate`} loading="lazy" />
-              </div>
-            ))}
+            {/* Duplicate for infinite loop — hidden from screen readers & SEO */}
+            <div aria-hidden="true" style={{ display: "contents" }}>
+              {galleryImages.map((img, i) => (
+                <div key={`g2-${i}`} className={styles.galleryMarqueeItem}>
+                  <img src={img} alt="" loading="lazy" />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
         <div className={styles.galleryViewMore}>
@@ -321,26 +323,28 @@ export default function HomePage() {
               <span style={{ fontSize: "1.5rem", marginRight: "1rem" }}>🏥</span>
               <span>District Headquarters Hospital</span>
             </div>
-            {/* Duplicate for infinite loop */}
-            <div className={styles.affiliationCard}>
-              <img src="/logos/uos.png" alt="University of Sargodha" style={{ height: "40px", objectFit: "contain", marginRight: "1rem" }} />
-              <span>University of Sargodha</span>
-            </div>
-            <div className={styles.affiliationCard}>
-              <img src="/logos/hec.png" alt="HEC Recognized" style={{ height: "40px", objectFit: "contain", marginRight: "1rem" }} />
-              <span>HEC Recognized</span>
-            </div>
-            <div className={styles.affiliationCard}>
-              <img src="/logos/gov.png" alt="Government of Pakistan" style={{ height: "40px", objectFit: "contain", marginRight: "1rem" }} />
-              <span>Pharmacy Council of Pakistan</span>
-            </div>
-            <div className={styles.affiliationCard}>
-              <img src="/logos/ahpc.png" alt="AHPC" style={{ height: "40px", objectFit: "contain", marginRight: "1rem" }} />
-              <span>Allied Health Professionals Council</span>
-            </div>
-            <div className={styles.affiliationCard}>
-              <span style={{ fontSize: "1.5rem", marginRight: "1rem" }}>🏥</span>
-              <span>District Headquarters Hospital</span>
+            {/* Duplicate for infinite loop — hidden from screen readers & SEO */}
+            <div aria-hidden="true" style={{ display: "contents" }}>
+              <div className={styles.affiliationCard}>
+                <img src="/logos/uos.png" alt="" style={{ height: "40px", objectFit: "contain", marginRight: "1rem" }} />
+                <span>University of Sargodha</span>
+              </div>
+              <div className={styles.affiliationCard}>
+                <img src="/logos/hec.png" alt="" style={{ height: "40px", objectFit: "contain", marginRight: "1rem" }} />
+                <span>HEC Recognized</span>
+              </div>
+              <div className={styles.affiliationCard}>
+                <img src="/logos/gov.png" alt="" style={{ height: "40px", objectFit: "contain", marginRight: "1rem" }} />
+                <span>Pharmacy Council of Pakistan</span>
+              </div>
+              <div className={styles.affiliationCard}>
+                <img src="/logos/ahpc.png" alt="" style={{ height: "40px", objectFit: "contain", marginRight: "1rem" }} />
+                <span>Allied Health Professionals Council</span>
+              </div>
+              <div className={styles.affiliationCard}>
+                <span style={{ fontSize: "1.5rem", marginRight: "1rem" }}>🏥</span>
+                <span>District Headquarters Hospital</span>
+              </div>
             </div>
           </div>
         </div>
@@ -353,8 +357,8 @@ export default function HomePage() {
           <p className={styles.prospectusDesc}>
             Discover everything Nisab College has to offer. Download our official prospectus to learn more about our state-of-the-art facilities, expert faculty, and detailed program curricula.
           </p>
-          <a href="/images/placeholder-prospectus.pdf" className="btn-primary" style={{ background: "white", color: "var(--primary-red)", border: "2px solid white" }}>
-            Download Prospectus (PDF) &darr;
+          <a href="https://wa.me/923076813575?text=I%20would%20like%20to%20request%20the%20Nisab%20College%20prospectus" target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ background: "white", color: "var(--primary-red)", border: "2px solid white" }}>
+            Request Prospectus via WhatsApp &rarr;
           </a>
         </div>
       </section>

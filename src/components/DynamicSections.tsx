@@ -11,7 +11,6 @@ const testimonials = [
     quote: "From day one, the faculty made me feel like family. My clinical skills have blossomed—my confidence has soared beautifully. The daily practicals and labs bring such peace of mind and joy.",
     name: "Sara Ahmed",
     initial: "S",
-    image: "/images/avatar-sara.jpg" // We'll use initials fallback for now
   },
   {
     title: "Expertise met with genuine care",
@@ -42,11 +41,7 @@ export function TestimonialSlider() {
             <p className={styles.testimonialText}>{t.quote}</p>
             <div className={styles.testimonialAuthor}>
               <div className={styles.authorAvatar}>
-                {t.image ? (
-                  <img src={t.image} alt={t.name} style={{ width: "100%", height: "100%", borderRadius: "50%", objectFit: "cover" }} />
-                ) : (
-                  t.initial
-                )}
+                {t.initial}
               </div>
               <div>
                 <div className={styles.authorName}>{t.name}</div>
