@@ -3,7 +3,14 @@ import Link from "next/link";
 import { readdirSync } from "fs";
 import { join } from "path";
 import ContactForm from "@/components/ContactForm";
-import { medicalPrograms, adBsPrograms, professionalPrograms } from "@/lib/programs";
+import { 
+  intermediatePrograms, 
+  alliedHealthPrograms, 
+  diplomaPrograms, 
+  medicalDegreePrograms, 
+  freelancingCourses, 
+  adBsProfessionalPrograms 
+} from "@/lib/programs";
 import { DynamicNoticeBoard, TestimonialSlider, FAQAccordion, InteractiveFeatures } from "@/components/DynamicSections";
 import styles from "./page.module.css";
 
@@ -23,9 +30,9 @@ function getMediaImages(): string[] {
 
 // Featured picks — 2 from each category shown on homepage
 const featuredPrograms = [
-  ...medicalPrograms.slice(0, 2),
-  ...adBsPrograms.slice(0, 2),
-  ...professionalPrograms.slice(0, 2),
+  ...medicalDegreePrograms.slice(0, 2),
+  ...adBsProfessionalPrograms.slice(0, 2),
+  ...alliedHealthPrograms.slice(0, 2),
 ];
 
 const whyUsFeatures = [
@@ -59,22 +66,6 @@ export default function HomePage() {
 
   return (
     <main>
-      {/* ── LATEST NEWS TICKER ── */}
-      <div className={styles.newsTickerWrap}>
-        <div className={styles.tickerLabel}>LATEST NEWS</div>
-        <div className={styles.tickerContent}>
-          <div className={styles.tickerItem}>Admissions Open for Fall 2026! Apply now for DPT and AD/BS Programs.</div>
-          <div className={styles.tickerItem}>Merit List for Medical Lab Technology will be displayed on Sep 5th.</div>
-          <div className={styles.tickerItem}>New transport routes added for surrounding villages. Contact Admin for details.</div>
-          <div className={styles.tickerItem}>Orientation session scheduled for Sep 15th at Main Campus Auditorium.</div>
-          {/* Duplicate for infinite loop */}
-          <div className={styles.tickerItem}>Admissions Open for Fall 2026! Apply now for DPT and AD/BS Programs.</div>
-          <div className={styles.tickerItem}>Merit List for Medical Lab Technology will be displayed on Sep 5th.</div>
-          <div className={styles.tickerItem}>New transport routes added for surrounding villages. Contact Admin for details.</div>
-          <div className={styles.tickerItem}>Orientation session scheduled for Sep 15th at Main Campus Auditorium.</div>
-        </div>
-      </div>
-
       {/* ── HERO ── */}
       <section className={styles.hero}>
         <div className={styles.heroLeft}>
@@ -145,7 +136,7 @@ export default function HomePage() {
       <section className={styles.programsSection}>
         <div className={styles.sectionHeader}>
           <div className={styles.sectionSubTitle}>OUR PROGRAMS</div>
-          <h2 className={styles.sectionTitleWhite}>13 Programs Across 3 Tracks</h2>
+          <h2 className={styles.sectionTitleWhite}>Multiple Programs Across 6 Tracks</h2>
           <div className={styles.sectionDivider}></div>
         </div>
         <div className={styles.programsGrid}>
@@ -300,22 +291,12 @@ export default function HomePage() {
         <div className={styles.whyUsSubtitle}>OUR GALLERY</div>
         <h2 className={styles.galleryTitle}>Campus Life</h2>
         <div className={styles.sectionDividerRed} style={{ marginBottom: "2.5rem" }}></div>
-        <div className={styles.galleryMarqueeWrapper}>
-          <div className={styles.galleryMarqueeContent}>
-            {galleryImages.map((img, i) => (
-              <div key={`g1-${i}`} className={styles.galleryMarqueeItem}>
-                <img src={img} alt={`Campus photo ${i + 1}`} loading="lazy" />
-              </div>
-            ))}
-            {/* Duplicate for infinite loop — hidden from screen readers & SEO */}
-            <div aria-hidden="true" style={{ display: "contents" }}>
-              {galleryImages.map((img, i) => (
-                <div key={`g2-${i}`} className={styles.galleryMarqueeItem}>
-                  <img src={img} alt="" loading="lazy" />
-                </div>
-              ))}
+        <div className={styles.galleryGrid}>
+          {galleryImages.map((img, i) => (
+            <div key={i} className={styles.galleryGridItem}>
+              <img src={img} alt={`Campus photo ${i + 1}`} loading="lazy" />
             </div>
-          </div>
+          ))}
         </div>
         <div className={styles.galleryViewMore}>
           <p style={{ color: "var(--text-secondary)", marginBottom: "1rem", fontSize: "0.95rem" }}>

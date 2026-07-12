@@ -1,6 +1,13 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { medicalPrograms, adBsPrograms, professionalPrograms } from "@/lib/programs";
+import { 
+  intermediatePrograms, 
+  alliedHealthPrograms, 
+  diplomaPrograms, 
+  medicalDegreePrograms, 
+  freelancingCourses, 
+  adBsProfessionalPrograms 
+} from "@/lib/programs";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -74,11 +81,11 @@ export default function AdmissionsPage() {
                 </tr>
               </thead>
               <tbody>
-                {/* Medical */}
+                {/* Intermediate */}
                 <tr className={styles.tableGroupHeader}>
-                  <td colSpan={3}>🏥 Medical &amp; Allied Health Programs</td>
+                  <td colSpan={3}>📚 Intermediate Programs</td>
                 </tr>
-                {medicalPrograms.map((p) => (
+                {intermediatePrograms.map((p) => (
                   <TableRow
                     key={p.id}
                     title={p.title}
@@ -87,24 +94,63 @@ export default function AdmissionsPage() {
                   />
                 ))}
 
-                {/* AD / BS */}
+                {/* Allied Health */}
                 <tr className={styles.tableGroupHeader}>
-                  <td colSpan={3}>📖 AD / BS Programs (Arts, Social Sciences &amp; Education)</td>
+                  <td colSpan={3}>🏥 Medical &amp; Allied Health Programs</td>
                 </tr>
-                {adBsPrograms.map((p) => (
+                {alliedHealthPrograms.map((p) => (
                   <TableRow
                     key={p.id}
                     title={p.title}
                     duration={p.duration}
-                    requirement="HSSC / Intermediate or equivalent (12 years), minimum 45–50% marks."
+                    requirement={p.eligibility[0]}
                   />
                 ))}
 
-                {/* Professional */}
+                {/* Diploma */}
                 <tr className={styles.tableGroupHeader}>
-                  <td colSpan={3}>💼 Professional Degree Programs (Business &amp; Teacher Education)</td>
+                  <td colSpan={3}>📜 Diploma Programs</td>
                 </tr>
-                {professionalPrograms.map((p) => (
+                {diplomaPrograms.map((p) => (
+                  <TableRow
+                    key={p.id}
+                    title={p.title}
+                    duration={p.duration}
+                    requirement={p.eligibility[0]}
+                  />
+                ))}
+
+                {/* Medical Degree */}
+                <tr className={styles.tableGroupHeader}>
+                  <td colSpan={3}>🩺 Medical Degree Programs</td>
+                </tr>
+                {medicalDegreePrograms.map((p) => (
+                  <TableRow
+                    key={p.id}
+                    title={p.title}
+                    duration={p.duration}
+                    requirement={p.eligibility[0]}
+                  />
+                ))}
+
+                {/* Freelancing */}
+                <tr className={styles.tableGroupHeader}>
+                  <td colSpan={3}>💻 Freelancing Courses</td>
+                </tr>
+                {freelancingCourses.map((p) => (
+                  <TableRow
+                    key={p.id}
+                    title={p.title}
+                    duration={p.duration}
+                    requirement={p.eligibility[0]}
+                  />
+                ))}
+
+                {/* AD/BS & Professional */}
+                <tr className={styles.tableGroupHeader}>
+                  <td colSpan={3}>📖 AD / BS &amp; Professional Programs</td>
+                </tr>
+                {adBsProfessionalPrograms.map((p) => (
                   <TableRow
                     key={p.id}
                     title={p.title}

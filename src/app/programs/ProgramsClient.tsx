@@ -2,7 +2,15 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { medicalPrograms, adBsPrograms, professionalPrograms, type Program } from "@/lib/programs";
+import { 
+  intermediatePrograms, 
+  alliedHealthPrograms, 
+  diplomaPrograms, 
+  medicalDegreePrograms, 
+  freelancingCourses, 
+  adBsProfessionalPrograms, 
+  type Program 
+} from "@/lib/programs";
 import styles from "./page.module.css";
 
 const WA_NUMBER = "923076813575";
@@ -133,31 +141,58 @@ export default function ProgramsClient({ images }: ProgramsClientProps) {
         </p>
       </section>
 
-      {/* ── MEDICAL PROGRAMS ── */}
+      {/* ── INTERMEDIATE PROGRAMS ── */}
       <ProgramSection
-        label="Medical & Allied Health"
-        title="Medical Programs"
-        programs={medicalPrograms}
+        label="Foundational Education"
+        title="Intermediate Programs"
+        programs={intermediatePrograms}
         images={images}
         startImageIdx={0}
       />
 
-      {/* ── AD/BS PROGRAMS ── */}
+      {/* ── ALLIED HEALTH PROGRAMS ── */}
       <ProgramSection
-        label="Arts, Social Sciences & Education"
-        title="AD / BS Programs"
-        programs={adBsPrograms}
+        label="Practical Healthcare"
+        title="Medical & Allied Health Programs"
+        programs={alliedHealthPrograms}
         images={images}
-        startImageIdx={3}
+        startImageIdx={2}
       />
 
-      {/* ── PROFESSIONAL PROGRAMS ── */}
+      {/* ── DIPLOMA PROGRAMS ── */}
       <ProgramSection
-        label="Business & Teacher Education"
-        title="Professional Degree Programs"
-        programs={professionalPrograms}
+        label="Specialized Certifications"
+        title="Diploma Programs"
+        programs={diplomaPrograms}
+        images={images}
+        startImageIdx={4}
+      />
+
+      {/* ── MEDICAL DEGREE PROGRAMS ── */}
+      <ProgramSection
+        label="Advanced Medical Sciences"
+        title="Medical Degree Programs"
+        programs={medicalDegreePrograms}
         images={images}
         startImageIdx={6}
+      />
+
+      {/* ── FREELANCING COURSES ── */}
+      <ProgramSection
+        label="Skill Development"
+        title="Freelancing Courses"
+        programs={freelancingCourses}
+        images={images}
+        startImageIdx={8}
+      />
+
+      {/* ── AD/BS & PROFESSIONAL PROGRAMS ── */}
+      <ProgramSection
+        label="Arts, Business & Education"
+        title="AD/BS & B.Ed Programs"
+        programs={adBsProfessionalPrograms}
+        images={images}
+        startImageIdx={1}
       />
 
       {/* ── CTA BANNER ── */}
