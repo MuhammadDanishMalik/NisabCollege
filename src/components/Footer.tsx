@@ -1,9 +1,13 @@
+"use client";
+
 import Link from "next/link";
+import { useLanguage } from "@/context/LanguageContext";
 import styles from "./Footer.module.css";
 
 const WA_NUMBER = "923076813575";
 
 export default function Footer() {
+  const { isUrdu, t } = useLanguage();
   const year = new Date().getFullYear();
 
   return (
@@ -14,14 +18,12 @@ export default function Footer() {
           <div className={styles.brand}>
             <img src="/logo.png" alt="Nisab College Logo" className={styles.logoImg} />
             <div className={styles.logoText}>
-              <span className={styles.logoTitle}>NISAB COLLEGE</span>
-              <span className={styles.logoSubtitle}>WAN BHACHRAN</span>
+              <span className={styles.logoTitle}>{t("collegeName")}</span>
+              <span className={styles.logoSubtitle}>{t("collegeSubName")}</span>
             </div>
           </div>
-          <p className={styles.tagline}>Great Minds To Learn With</p>
-          <p>
-            Nisab College is committed to providing quality professional education and practical training for a successful healthcare career.
-          </p>
+          <p className={styles.tagline}>{t("footerTagline")}</p>
+          <p>{t("footerAbout")}</p>
 
           {/* Social Media */}
           <div className={styles.socials}>
@@ -62,47 +64,50 @@ export default function Footer() {
 
         {/* Quick Links */}
         <div className={styles.column}>
-          <h3>Quick Links</h3>
-          <Link href="/">Home</Link>
-          <Link href="/about">About Us</Link>
-          <Link href="/programs">Programs</Link>
-          <Link href="/admissions">Admissions</Link>
-          <Link href="/gallery">Gallery</Link>
-          <Link href="/jobs">Careers</Link>
-          <Link href="/contact">Contact</Link>
+          <h3>{t("quickLinks")}</h3>
+          <Link href="/">{t("navHome")}</Link>
+          <Link href="/about">{t("navAbout")}</Link>
+          <Link href="/programs">{t("navPrograms")}</Link>
+          <Link href="/admissions">{t("navAdmissions")}</Link>
+          <Link href="/facilities">{t("navFacilities")}</Link>
+          <Link href="/principal-message">{t("navPrincipalMessage")}</Link>
+          <Link href="/faqs">{t("navFaqs")}</Link>
+          <Link href="/gallery">{t("navGallery")}</Link>
+          <Link href="/jobs">{t("careersFooter")}</Link>
+          <Link href="/contact">{t("navContact")}</Link>
         </div>
 
         {/* Programs */}
         <div className={styles.column}>
-          <h3>Our Programs</h3>
-          <Link href="/programs#dpt">DPT — Physiotherapy</Link>
-          <Link href="/programs#ad-mlt">Associate Deg. (MLT)</Link>
-          <Link href="/programs#bs-radiology">B.Sc Radiology</Link>
-          <Link href="/programs#bs-surgical">B.Sc Surgical Tech.</Link>
-          <Link href="/programs#bs-mlt">B.Sc Medical Lab Tech</Link>
-          <Link href="/programs#ad-bs-education">AD/BS Education</Link>
-          <Link href="/programs#ad-bs-english">AD/BS English</Link>
-          <Link href="/programs#bba">BBA</Link>
-          <Link href="/programs#bed-1-5">B.Ed 1.5 / 2.5</Link>
+          <h3>{t("ourProgramsLabel")}</h3>
+          <Link href="/programs#dpt">{isUrdu ? "ڈی پی ٹی — فزیوتھراپی" : "DPT — Physiotherapy"}</Link>
+          <Link href="/programs#ad-mlt">{isUrdu ? "ایسوسی ایٹ ڈگری (ایم ایل ٹی)" : "Associate Deg. (MLT)"}</Link>
+          <Link href="/programs#bs-radiology">{isUrdu ? "بی ایس سی ریڈیالوجی" : "B.Sc Radiology"}</Link>
+          <Link href="/programs#bs-surgical">{isUrdu ? "بی ایس سی سرجیکل ٹیکنالوجی" : "B.Sc Surgical Tech."}</Link>
+          <Link href="/programs#bs-mlt">{isUrdu ? "بی ایس میڈیکل لیب ٹیکنالوجی" : "B.Sc Medical Lab Tech"}</Link>
+          <Link href="/programs#ad-bs-education">{isUrdu ? "اے ڈی / بی ایس ایجوکیشن" : "AD/BS Education"}</Link>
+          <Link href="/programs#ad-bs-arts">{isUrdu ? "اے ڈی / بی ایس اردو، انگلش" : "AD/BS English & Urdu"}</Link>
+          <Link href="/programs#bba">{isUrdu ? "بی بی اے" : "BBA"}</Link>
+          <Link href="/programs#bed">{isUrdu ? "بی ایڈ 1.5 / 2.5 سال" : "B.Ed 1.5 / 2.5"}</Link>
         </div>
 
         {/* Contact */}
         <div className={styles.column}>
-          <h3>Contact Info</h3>
-          <p>Musa Khel Road, Wan Bhachran, Mianwali</p>
+          <h3>{t("contactInfoFooter")}</h3>
+          <p>{t("locationText")}</p>
           <p>0307-6813575</p>
           <p>03314215165</p>
           <p>info@nisabcollege.edu.pk</p>
-          <p>Mon–Sat: 8 AM – 4 PM</p>
+          <p>{t("contactHoursValue")}</p>
         </div>
       </div>
 
       <div className={`container ${styles.bottom}`}>
-        <p>&copy; {year} NISAB COLLEGE. All Rights Reserved.</p>
+        <p>&copy; {year} {t("collegeName")}. {t("allRightsReserved")}</p>
         <p>
-          Designed with ❤️ for Better Education &mdash;{" "}
+          {t("designedWithLove")}{" "}
           <a href={`https://wa.me/${WA_NUMBER}`} className={styles.bottomLink} target="_blank" rel="noopener noreferrer">
-            Chat with us
+            {t("chatWithUs")}
           </a>
         </p>
       </div>

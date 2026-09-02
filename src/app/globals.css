@@ -22,9 +22,52 @@ html, body {
 body {
   background-color: var(--bg-white);
   color: var(--text-main);
-  font-family: var(--font-outfit), sans-serif;
+  font-family: var(--font-outfit), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  transition: font-family 0.2s ease;
+}
+
+/* Urdu Language & Nastaliq Font Styles */
+html[lang="ur"],
+body.lang-urdu,
+.lang-urdu {
+  font-family: var(--font-noto-urdu), 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', serif !important;
+  direction: rtl;
+  text-align: right;
+}
+
+html[lang="ur"] body {
+  font-family: var(--font-noto-urdu), 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', serif !important;
+  line-height: 2.1;
+}
+
+html[lang="ur"] h1,
+html[lang="ur"] h2,
+html[lang="ur"] h3,
+html[lang="ur"] h4,
+html[lang="ur"] h5,
+html[lang="ur"] h6 {
+  font-family: var(--font-noto-urdu), 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', serif !important;
+  line-height: 1.8;
+  letter-spacing: 0;
+}
+
+html[lang="ur"] p,
+html[lang="ur"] span,
+html[lang="ur"] li,
+html[lang="ur"] a,
+html[lang="ur"] button,
+html[lang="ur"] input,
+html[lang="ur"] textarea {
+  font-family: var(--font-noto-urdu), 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', serif;
+}
+
+html[lang="ur"] .btn-primary,
+html[lang="ur"] .btn-outline {
+  padding-top: 6px;
+  padding-bottom: 8px;
+  line-height: 1.7;
 }
 
 main {

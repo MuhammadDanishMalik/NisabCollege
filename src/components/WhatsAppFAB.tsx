@@ -2,13 +2,14 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLanguage } from "@/context/LanguageContext";
 
 const WA_NUMBER = "923076813575"; // WhatsApp number in international format
-const DEFAULT_MSG = "Hello! I found Nisab College online and I would like to get more information.";
 
 export default function WhatsAppFAB() {
   const [visible, setVisible] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
+  const { isUrdu, t } = useLanguage();
 
   useEffect(() => {
     // Show FAB after a short delay
@@ -16,7 +17,11 @@ export default function WhatsAppFAB() {
     return () => clearTimeout(timer);
   }, []);
 
-  const waUrl = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(DEFAULT_MSG)}`;
+  const defaultMsg = isUrdu
+    ? "السلام علیکم! میں نصاب کالج کے بارے میں مزید معلومات حاصل کرنا چاہتا/چاہتی ہوں۔"
+    : "Hello! I found Nisab College online and I would like to get more information.";
+
+  const waUrl = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(defaultMsg)}`;
 
   return (
     <AnimatePresence>
@@ -25,11 +30,12 @@ export default function WhatsAppFAB() {
           style={{
             position: "fixed",
             bottom: "2rem",
-            right: "2rem",
+            right: isUrdu ? "auto" : "2rem",
+            left: isUrdu ? "2rem" : "auto",
             zIndex: 9999,
             display: "flex",
             flexDirection: "column",
-            alignItems: "flex-end",
+            alignItems: isUrdu ? "flex-start" : "flex-end",
             gap: "0.75rem",
           }}
           initial={{ scale: 0, opacity: 0 }}
@@ -41,9 +47,9 @@ export default function WhatsAppFAB() {
           <AnimatePresence>
             {showTooltip && (
               <motion.div
-                initial={{ opacity: 0, x: 20 }}
+                initial={{ opacity: 0, x: isUrdu ? -20 : 20 }}
                 animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: 20 }}
+                exit={{ opacity: 0, x: isUrdu ? -20 : 20 }}
                 style={{
                   background: "white",
                   color: "#333",
@@ -52,15 +58,16 @@ export default function WhatsAppFAB() {
                   boxShadow: "0 4px 20px rgba(0,0,0,0.15)",
                   fontSize: "0.875rem",
                   fontWeight: 500,
-                  maxWidth: "200px",
-                  textAlign: "right",
-                  lineHeight: 1.5,
+                  maxWidth: "220px",
+                  textAlign: isUrdu ? "right" : "left",
+                  lineHeight: isUrdu ? 1.8 : 1.5,
                   border: "1px solid #e5e7eb",
+                  fontFamily: "inherit"
                 }}
               >
-                💬 Chat with us on WhatsApp!
+                {t("fabTooltipTitle")}
                 <div style={{ fontSize: "0.78rem", color: "#555", marginTop: "0.25rem" }}>
-                  We reply within minutes.
+                  {t("fabTooltipSub")}
                 </div>
               </motion.div>
             )}

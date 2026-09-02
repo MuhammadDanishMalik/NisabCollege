@@ -2,19 +2,21 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLanguage } from "@/context/LanguageContext";
+import ShimmerImage from "@/components/ShimmerImage";
 import styles from "./page.module.css";
 
 const containerVariants = {
   hidden: {},
   show: {
     transition: {
-      staggerChildren: 0.06,
+      staggerChildren: 0.05,
     },
   },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, scale: 0.85, y: 20 },
+  hidden: { opacity: 0, scale: 0.9, y: 15 },
   show: {
     opacity: 1,
     scale: 1,
@@ -27,12 +29,10 @@ interface GalleryClientProps {
   images: string[];
 }
 
-const categories = ["All", "Campus", "Students", "Lab", "Events", "Faculty"];
-
 export default function GalleryClient({ images }: GalleryClientProps) {
   const [lightboxImg, setLightboxImg] = useState<string | null>(null);
   const [lightboxIdx, setLightboxIdx] = useState(0);
-  const [activeCategory] = useState("All");
+  const { isUrdu, t } = useLanguage();
 
   const openLightbox = (img: string, idx: number) => {
     setLightboxImg(img);
@@ -68,7 +68,7 @@ export default function GalleryClient({ images }: GalleryClientProps) {
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.2 }}
         >
-          Campus Gallery
+          {t("galleryHeroTitle")}
         </motion.h1>
         <motion.p
           className={styles.heroSubtitle}
@@ -76,7 +76,7 @@ export default function GalleryClient({ images }: GalleryClientProps) {
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.35 }}
         >
-          A visual tour of student life, campus facilities, and memorable moments at Nisab College Wan Bhachran.
+          {t("galleryHeroSubtitle")}
         </motion.p>
         <motion.div
           className={styles.heroStats}
@@ -84,17 +84,23 @@ export default function GalleryClient({ images }: GalleryClientProps) {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
         >
-          <span>{images.length}+ Photos</span>
+          <span>{images.length}+ {isUrdu ? "تصاویر" : "Photos"}</span>
           <span>|</span>
-          <span>Real Campus Life</span>
+          <span>{t("realCampusLife")}</span>
           <span>|</span>
-          <span>Nisab College</span>
+          <span>{t("collegeName")}</span>
         </motion.div>
       </motion.section>
 
       {/* Count bar */}
       <div className={styles.countBar}>
-        <span>Showing <strong>{images.length}</strong> photos from our campus</span>
+        <span>
+          {isUrdu ? (
+            <>کیمپس کی <strong>{images.length}</strong> تصاویر دکھائی جا رہی ہیں</>
+          ) : (
+            <>Showing <strong>{images.length}</strong> photos from our campus</>
+          )}
+        </span>
       </div>
 
       {/* Masonry Grid */}
@@ -114,14 +120,19 @@ export default function GalleryClient({ images }: GalleryClientProps) {
               onClick={() => openLightbox(img, i)}
               tabIndex={0}
               role="button"
-              aria-label={`View photo ${i + 1}`}
+              aria-label={`${t("viewPhoto")} ${i + 1}`}
               onKeyDown={(e) => e.key === "Enter" && openLightbox(img, i)}
+              style={{ position: "relative", minHeight: "220px" }}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={img} alt={`Campus photo ${i + 1}`} loading="lazy" />
+              <ShimmerImage
+                src={img}
+                alt={`Campus photo ${i + 1}`}
+                fill
+                style={{ objectFit: "cover" }}
+              />
               <div className={styles.overlay}>
                 <span className={styles.overlayIcon}>🔍</span>
-                <span className={styles.overlayText}>Photo {i + 1}</span>
+                <span className={styles.overlayText}>{isUrdu ? `تصویر نمبر ${i + 1}` : `Photo ${i + 1}`}</span>
               </div>
             </motion.div>
           ))}
@@ -152,7 +163,10 @@ export default function GalleryClient({ images }: GalleryClientProps) {
               <img src={lightboxImg} alt={`Campus photo ${lightboxIdx + 1}`} className={styles.lightboxImg} />
               <button className={styles.lightboxNext} onClick={nextImg} aria-label="Next">›</button>
               <div className={styles.lightboxCaption}>
-                Photo {lightboxIdx + 1} of {images.length} — Nisab College Campus
+                {isUrdu 
+                  ? `تصویر ${lightboxIdx + 1} از ${images.length} — نصاب کالج واں بھچراں`
+                  : `Photo ${lightboxIdx + 1} of ${images.length} — Nisab College Campus`
+                }
               </div>
             </motion.div>
           </motion.div>

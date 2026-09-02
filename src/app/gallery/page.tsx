@@ -1,28 +1,13 @@
-import { readdirSync } from "fs";
-import { join } from "path";
+import type { Metadata } from "next";
+import { getMediaImages } from "@/lib/media";
 import GalleryClient from "./GalleryClient";
 
-function getMediaImages(): string[] {
-  const mediaDir = join(process.cwd(), "Media-Images");
-  try {
-    const files = readdirSync(mediaDir);
-    return files.filter((file) => {
-      const ext = file.split(".").pop()?.toLowerCase();
-      return ["jpg", "jpeg", "png", "webp"].includes(ext || "");
-    });
-  } catch {
-    return [];
-  }
-}
-
-export const metadata = {
-  title: "Gallery | Nisab College",
-  description: "Explore campus life, facilities, and memorable moments at Nisab College Wan Bhachran.",
+export const metadata: Metadata = {
+  title: "Campus Gallery | Nisab College Wan Bhachran",
+  description: "A visual tour of student life, campus facilities, and memorable moments at Nisab College Wan Bhachran.",
 };
 
 export default function GalleryPage() {
-  const mediaFiles = getMediaImages();
-  const images = mediaFiles.map((f) => `/api/media/${encodeURIComponent(f)}`);
-
+  const images = getMediaImages();
   return <GalleryClient images={images} />;
 }

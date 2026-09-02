@@ -1,0 +1,142 @@
+.hero {
+  background: linear-gradient(135deg, rgba(163, 21, 21, 0.08) 0%, rgba(244, 246, 248, 0.95) 100%);
+  padding: 5rem 2rem 4rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.heroBadge {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--primary-red);
+  background: rgba(163, 21, 21, 0.08);
+  padding: 0.35rem 1rem;
+  border-radius: 20px;
+  margin-bottom: 1rem;
+}
+
+.heroTitle {
+  font-size: 2.75rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 1rem;
+}
+
+.heroSubtitle {
+  max-width: 700px;
+  margin: 0 auto;
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+.container {
+  max-width: 1050px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+.profileCard {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 3rem;
+  align-items: start;
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 3rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  margin-bottom: 3rem;
+}
+
+.imageWrap {
+  position: relative;
+  height: 380px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.principalImage {
+  object-fit: cover;
+}
+
+.profileMeta {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.principalName {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+.principalRole {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--primary-red);
+}
+
+.letterContent {
+  color: var(--text-main);
+  line-height: 1.9;
+  font-size: 1.05rem;
+}
+
+.letterHeading {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--primary-red);
+  margin-bottom: 1.5rem;
+}
+
+.letterContent p {
+  margin-bottom: 1.25rem;
+  color: var(--text-secondary);
+}
+
+.pillarsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.pillarCard {
+  background: #fdfefe;
+  border: 1px solid var(--border-color);
+  border-top: 4px solid var(--primary-red);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+}
+
+.pillarTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 0.75rem;
+}
+
+.pillarDesc {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+@media (max-width: 850px) {
+  .profileCard {
+    grid-template-columns: 1fr;
+    padding: 1.75rem;
+    gap: 2rem;
+  }
+  .imageWrap {
+    height: 300px;
+  }
+  .pillarsGrid {
+    grid-template-columns: 1fr;
+  }
+}

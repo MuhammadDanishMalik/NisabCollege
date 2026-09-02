@@ -1,15 +1,17 @@
 "use client";
 
 import { useState } from "react";
+import { useLanguage } from "@/context/LanguageContext";
 import styles from "../app/page.module.css";
 
 export default function ContactForm() {
+  const { isUrdu, t } = useLanguage();
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [status, setStatus] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setStatus("Sending...");
+    setStatus(t("formSending"));
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
@@ -17,13 +19,13 @@ export default function ContactForm() {
         body: JSON.stringify(formData),
       });
       if (res.ok) {
-        setStatus("✓ Message Sent!");
+        setStatus(t("formSuccess"));
         setFormData({ name: "", email: "", message: "" });
       } else {
-        setStatus("✗ Error — please try again.");
+        setStatus(t("formError"));
       }
     } catch {
-      setStatus("✗ Network error.");
+      setStatus(isUrdu ? "✗ نیٹ ورک کا مسئلہ پیش آیا ہے۔" : "✗ Network error.");
     }
   };
 
@@ -32,7 +34,7 @@ export default function ContactForm() {
       <div className={styles.inputGroup}>
         <input
           type="text"
-          placeholder="Your Name"
+          placeholder={t("formNamePlaceholder")}
           className={styles.formInput}
           required
           value={formData.name}
@@ -40,7 +42,7 @@ export default function ContactForm() {
         />
         <input
           type="email"
-          placeholder="Your Email"
+          placeholder={t("formEmailPlaceholder")}
           className={styles.formInput}
           required
           value={formData.email}
@@ -48,7 +50,7 @@ export default function ContactForm() {
         />
       </div>
       <textarea
-        placeholder="Your Message"
+        placeholder={t("formMessagePlaceholder")}
         className={styles.formInput}
         rows={4}
         required
@@ -56,7 +58,7 @@ export default function ContactForm() {
         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
       />
       <button type="submit" className={styles.formSubmit}>
-        {status || "Send Message →"}
+        {status || t("formSendBtn")}
       </button>
     </form>
   );

@@ -1,9 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import { useLanguage } from "@/context/LanguageContext";
 import styles from "./page.module.css";
 
 export default function ContactPage() {
+  const { isUrdu, t } = useLanguage();
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
@@ -31,25 +33,25 @@ export default function ContactPage() {
         setFormData({ name: "", email: "", message: "" });
       } else {
         setStatus("error");
-        setErrorMessage(data.error || "Something went wrong.");
+        setErrorMessage(data.error || (isUrdu ? "کچھ غلط ہو گیا، دوبارہ کوشش کریں۔" : "Something went wrong."));
       }
-    } catch (error) {
+    } catch {
       setStatus("error");
-      setErrorMessage("Failed to send message. Please try again later.");
+      setErrorMessage(isUrdu ? "پیغام بھیجنے میں ناکامی ہوئی۔ برائے مہربانی دوبارہ کوشش کریں۔" : "Failed to send message. Please try again later.");
     }
   };
 
   return (
     <main className={styles.container}>
-      <h1 className={`${styles.title} text-gradient animate-fade-in`}>Get in Touch</h1>
+      <h1 className={`${styles.title} text-gradient animate-fade-in`}>{t("getInTouchLabel")}</h1>
       <p className={`${styles.subtitle} animate-fade-in`}>
-        We would love to hear from you. Fill out the form below and our admissions team will get back to you shortly.
+        {t("contactPageSubtitle")}
       </p>
 
       <div className={`glass-panel ${styles.formCard} animate-fade-in`} style={{ animationDelay: '0.2s' }}>
         {status === "success" && (
           <div className={styles.successMessage}>
-            Thank you! Your message has been successfully sent.
+            {t("contactSuccessAlert")}
           </div>
         )}
 
@@ -61,7 +63,7 @@ export default function ContactPage() {
 
         <form onSubmit={handleSubmit}>
           <div className={styles.formGroup}>
-            <label htmlFor="name" className={styles.label}>Full Name</label>
+            <label htmlFor="name" className={styles.label}>{t("contactFullNameLabel")}</label>
             <input
               type="text"
               id="name"
@@ -71,11 +73,12 @@ export default function ContactPage() {
               value={formData.name}
               onChange={handleChange}
               disabled={status === "submitting"}
+              placeholder={t("formNamePlaceholder")}
             />
           </div>
 
           <div className={styles.formGroup}>
-            <label htmlFor="email" className={styles.label}>Email Address</label>
+            <label htmlFor="email" className={styles.label}>{t("contactEmailLabelField")}</label>
             <input
               type="email"
               id="email"
@@ -85,11 +88,12 @@ export default function ContactPage() {
               value={formData.email}
               onChange={handleChange}
               disabled={status === "submitting"}
+              placeholder={t("formEmailPlaceholder")}
             />
           </div>
 
           <div className={styles.formGroup}>
-            <label htmlFor="message" className={styles.label}>Your Message</label>
+            <label htmlFor="message" className={styles.label}>{t("contactYourMessageLabel")}</label>
             <textarea
               id="message"
               name="message"
@@ -98,6 +102,7 @@ export default function ContactPage() {
               value={formData.message}
               onChange={handleChange}
               disabled={status === "submitting"}
+              placeholder={t("formMessagePlaceholder")}
             />
           </div>
 
@@ -106,7 +111,7 @@ export default function ContactPage() {
             className={`btn-primary ${styles.submitBtn}`}
             disabled={status === "submitting"}
           >
-            {status === "submitting" ? "Sending..." : "Send Message"}
+            {status === "submitting" ? t("formSending") : t("formSendBtn")}
           </button>
         </form>
       </div>
