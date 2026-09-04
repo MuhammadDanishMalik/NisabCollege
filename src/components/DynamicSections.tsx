@@ -5,6 +5,116 @@ import styles from "../app/page.module.css";
 import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
 
+// ── FACULTY / STAFF SECTION ──
+const facultyEn = [
+  {
+    name: "Muhammad Zaryab Hassan Khan",
+    role: "Lecturer",
+    qualification: "DVM, RVMP",
+    specialty: "Veterinary & Livestock Sciences",
+    subject: "Livestock Assistant Diploma (LAD)",
+    photo: "/staff/zaryab.jpg",
+    initials: "ZH",
+    bio: "A highly qualified and dedicated lecturer specializing in Veterinary Medicine and livestock management. Brings extensive clinical experience and modern diagnostic expertise to the Livestock Assistant Diploma program.",
+  },
+  {
+    name: "Muhammad Sajjad",
+    role: "Administration Officer",
+    qualification: "BS, CS",
+    specialty: "Administration & Management",
+    subject: "College Administration",
+    photo: "/staff/sajjad.jpg",
+    initials: "MS",
+    bio: "A dedicated Administration Officer holding a BS in Computer Science, ensuring smooth day-to-day operations of Nisab College. Committed to efficient management, student services, and institutional excellence.",
+  },
+];
+
+const facultyUr = [
+  {
+    name: "محمد زریاب حسن خان",
+    role: "لیکچرار",
+    qualification: "DVM, RVMP",
+    specialty: "ویٹرنری اور لائیو سٹاک سائنسز",
+    subject: "لائیو سٹاک اسسٹنٹ ڈپلومہ",
+    photo: "/staff/zaryab.jpg",
+    initials: "ز",
+    bio: "ویٹرنری میڈیسن اور لائیو سٹاک مینجمنٹ میں مہارت رکھنے والے انتہائی قابل اور پُرجوش لیکچرار۔ ایل اے ڈی پروگرام میں جدید تشخیصی مہارت اور وسیع کلینیکل تجربہ فراہم کرتے ہیں۔",
+  },
+  {
+    name: "محمد سجاد",
+    role: "ایڈمنسٹریشن آفیسر",
+    qualification: "BS, CS",
+    specialty: "انتظامیہ اور مینجمنٹ",
+    subject: "کالج انتظامیہ",
+    photo: "/staff/sajjad.jpg",
+    initials: "م",
+    bio: "کمپیوٹر سائنس میں بی ایس کی ڈگری کے حامل انتہائی قابل ایڈمنسٹریشن آفیسر جو نصاب کالج کے روزمرہ انتظامی امور کو بحسن و خوبی چلاتے ہیں۔ طلباء کی خدمت اور ادارے کی ترقی کے لیے پرعزم۔",
+  },
+];
+
+export function FacultySection() {
+  const { isUrdu, t } = useLanguage();
+  const list = isUrdu ? facultyUr : facultyEn;
+
+  return (
+    <section className={styles.facultySection}>
+      <div className={styles.whyUsSubtitle}>{t("facultyLabel")}</div>
+      <h2 className={styles.sectionTitleDark}>{t("facultyTitle")}</h2>
+      <div className={styles.sectionDividerRed} style={{ marginBottom: "1.5rem" }} />
+      <p
+        style={{
+          color: "var(--text-secondary)",
+          maxWidth: "650px",
+          margin: "0 auto 3rem",
+          lineHeight: isUrdu ? 2.0 : 1.7,
+          fontSize: "1.05rem",
+        }}
+      >
+        {t("facultySubtitle")}
+      </p>
+
+      <div className={styles.facultyGrid}>
+        {list.map((member, idx) => {
+          const [imgError, setImgError] = useState(false);
+          return (
+            <div key={idx} className={styles.facultyCard}>
+              {/* Photo */}
+              <div className={styles.facultyPhotoWrap}>
+                {!imgError ? (
+                  <Image
+                    src={member.photo}
+                    alt={member.name}
+                    fill
+                    className={styles.facultyPhoto}
+                    style={{ objectFit: "cover", objectPosition: "top" }}
+                    onError={() => setImgError(true)}
+                  />
+                ) : (
+                  <div className={styles.facultyInitials}>{member.initials}</div>
+                )}
+                <div className={styles.facultyOverlay}>
+                  <div className={styles.facultyBio}>{member.bio}</div>
+                </div>
+              </div>
+
+              {/* Info */}
+              <div className={styles.facultyInfo}>
+                <div className={styles.facultyBadge}>{member.role}</div>
+                <h3 className={styles.facultyName}>{member.name}</h3>
+                <div className={styles.facultyQual}>🎓 {member.qualification}</div>
+                <div className={styles.facultySubject}>📘 {member.subject}</div>
+                <div className={styles.facultySpec}>
+                  <span>🔬</span> {member.specialty}
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
 // ── TESTIMONIAL GRID ──
 const testimonialsEn = [
   {

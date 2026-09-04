@@ -1,7 +1,7 @@
 "use client";
 
 import Image, { ImageProps } from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { shimmerDataUrl } from "@/lib/shimmer";
 
 interface ShimmerImageProps extends Omit<ImageProps, "placeholder" | "blurDataURL"> {
@@ -18,6 +18,11 @@ export default function ShimmerImage({
 }: ShimmerImageProps) {
   const [loading, setLoading] = useState(true);
   const [imgSrc, setImgSrc] = useState(src);
+
+  useEffect(() => {
+    setImgSrc(src);
+    setLoading(true);
+  }, [src]);
 
   return (
     <div

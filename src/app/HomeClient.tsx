@@ -10,7 +10,7 @@ import {
   adBsProfessionalPrograms,
   type Program 
 } from "@/lib/programs";
-import { DynamicNoticeBoard, TestimonialSlider, FAQAccordion, InteractiveFeatures } from "@/components/DynamicSections";
+import { DynamicNoticeBoard, TestimonialSlider, FAQAccordion, InteractiveFeatures, FacultySection } from "@/components/DynamicSections";
 import { useLanguage } from "@/context/LanguageContext";
 import styles from "./page.module.css";
 
@@ -199,26 +199,29 @@ export default function HomeClient({ allImages }: HomeClientProps) {
         </div>
       </section>
 
+      {/* ── FACULTY / STAFF SECTION ── */}
+      <FacultySection />
+
       {/* ── INTERACTIVE FEATURES (KINDERHEAVEN STYLE) ── */}
       <InteractiveFeatures images={galleryImages} />
 
       {/* ── WE ARE HIRING BANNER ── */}
-      <section style={{ backgroundColor: "rgba(163,21,21,0.05)", padding: "4rem 2rem", margin: "2rem 0" }}>
-        <div style={{ maxWidth: "1000px", margin: "0 auto", display: "flex", gap: "3rem", alignItems: "center", flexWrap: "wrap" }}>
-          <div style={{ flex: 1, minWidth: "300px" }}>
+      <section style={{ backgroundColor: "rgba(163,21,21,0.05)", padding: "clamp(2rem, 5vw, 4rem) clamp(1rem, 4vw, 2rem)", margin: "2rem 0" }}>
+        <div style={{ maxWidth: "1000px", margin: "0 auto", display: "flex", gap: "2.5rem", alignItems: "center", flexWrap: "wrap" }}>
+          <div style={{ flex: 1, minWidth: "min(100%, 300px)" }}>
             <div className={styles.teamSubtitle}>{t("weAreHiring")}</div>
-            <h2 className={styles.teamTitle} style={{ color: "var(--text-main)", fontSize: "2rem", marginBottom: "1rem" }}>{t("joinOurTeam")}</h2>
-            <p style={{ color: "var(--text-secondary)", marginBottom: "1.5rem", lineHeight: isUrdu ? 1.9 : 1.6 }}>{t("hiringDesc")}</p>
-            <ul className={styles.teamList} style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem", marginBottom: "2rem" }}>
-              <li style={{ background: "white", padding: "1rem", borderRadius: "8px", borderLeft: isUrdu ? "none" : "4px solid var(--primary-red)", borderRight: isUrdu ? "4px solid var(--primary-red)" : "none" }}>{t("jobPos1")}</li>
-              <li style={{ background: "white", padding: "1rem", borderRadius: "8px", borderLeft: isUrdu ? "none" : "4px solid var(--primary-red)", borderRight: isUrdu ? "4px solid var(--primary-red)" : "none" }}>{t("jobPos2")}</li>
-              <li style={{ background: "white", padding: "1rem", borderRadius: "8px", borderLeft: isUrdu ? "none" : "4px solid var(--primary-red)", borderRight: isUrdu ? "4px solid var(--primary-red)" : "none" }}>{t("jobPos3")}</li>
-              <li style={{ background: "white", padding: "1rem", borderRadius: "8px", borderLeft: isUrdu ? "none" : "4px solid var(--primary-red)", borderRight: isUrdu ? "4px solid var(--primary-red)" : "none", fontWeight: "bold" }}>{t("jobPosOnlyFemale")}</li>
+            <h2 className={styles.teamTitle} style={{ color: "var(--text-main)", fontSize: "clamp(1.5rem, 4vw, 2rem)", marginBottom: "1rem" }}>{t("joinOurTeam")}</h2>
+            <p style={{ color: "var(--text-secondary)", marginBottom: "1.5rem", lineHeight: isUrdu ? 1.9 : 1.6, fontSize: "clamp(0.875rem, 2.5vw, 1rem)" }}>{t("hiringDesc")}</p>
+            <ul className={styles.teamList} style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))", gap: "0.75rem", marginBottom: "2rem", listStyle: "none", padding: 0 }}>
+              <li style={{ background: "white", padding: "0.875rem", borderRadius: "8px", borderLeft: isUrdu ? "none" : "4px solid var(--primary-red)", borderRight: isUrdu ? "4px solid var(--primary-red)" : "none", fontSize: "0.9rem" }}>{t("jobPos1")}</li>
+              <li style={{ background: "white", padding: "0.875rem", borderRadius: "8px", borderLeft: isUrdu ? "none" : "4px solid var(--primary-red)", borderRight: isUrdu ? "4px solid var(--primary-red)" : "none", fontSize: "0.9rem" }}>{t("jobPos2")}</li>
+              <li style={{ background: "white", padding: "0.875rem", borderRadius: "8px", borderLeft: isUrdu ? "none" : "4px solid var(--primary-red)", borderRight: isUrdu ? "4px solid var(--primary-red)" : "none", fontSize: "0.9rem" }}>{t("jobPos3")}</li>
+              <li style={{ background: "white", padding: "0.875rem", borderRadius: "8px", borderLeft: isUrdu ? "none" : "4px solid var(--primary-red)", borderRight: isUrdu ? "4px solid var(--primary-red)" : "none", fontWeight: "bold", fontSize: "0.9rem" }}>{t("jobPosOnlyFemale")}</li>
             </ul>
             <Link href="/jobs" className="btn-primary">{t("applyForJob")}</Link>
           </div>
           {allImages[3] && (
-            <div style={{ flex: 1, minWidth: "300px", borderRadius: "24px", overflow: "hidden", height: "350px", position: "relative", boxShadow: "0 15px 30px rgba(0,0,0,0.1)" }}>
+            <div style={{ flex: 1, minWidth: "min(100%, 280px)", borderRadius: "24px", overflow: "hidden", height: "clamp(220px, 40vw, 350px)", position: "relative", boxShadow: "0 15px 30px rgba(0,0,0,0.1)" }}>
               <ShimmerImage
                 src={allImages[3]}
                 alt="Team"

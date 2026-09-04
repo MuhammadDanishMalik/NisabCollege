@@ -163,3 +163,41 @@ h1, h2, h3, h4, h5, h6 {
 .animate-fade-in {
   animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
+
+/* ── Mobile Baseline ── */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  .btn-primary,
+  .btn-outline {
+    font-size: 0.875rem;
+    padding: 9px 18px;
+    min-height: 44px; /* accessible touch target */
+  }
+
+  /* Prevent horizontal overflow */
+  * {
+    max-width: 100%;
+  }
+
+  img, video {
+    height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 0.875rem;
+  }
+}

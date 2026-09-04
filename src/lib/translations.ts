@@ -337,6 +337,16 @@ export const translations = {
     fabTooltipTitle: "💬 Chat with us on WhatsApp!",
     fabTooltipSub: "We reply within minutes.",
 
+    // Faculty / Staff Section
+    facultyLabel: "OUR FACULTY",
+    facultyTitle: "Meet Our Expert Instructors",
+    facultySubtitle: "Guided by qualified professionals dedicated to shaping the next generation of healthcare and academic leaders.",
+    facultyRoleLecturer: "Lecturer",
+    facultyRoleInstructor: "Instructor",
+    facultyRoleProfessor: "Professor",
+    facultySpecialty: "Specialty",
+    facultyQualification: "Qualification",
+
     // Footer
     footerTagline: "Great Minds To Learn With",
     footerAbout: "Nisab College is committed to providing quality professional education and practical training for a successful healthcare career.",
@@ -690,9 +700,19 @@ export const translations = {
     careersFooter: "ملازمتیں",
     contactInfoFooter: "رابطہ کی تفصیلات",
     allRightsReserved: "تمام جملہ حقوق محفوظ ہیں۔",
-    designedWithLove: "بہتر تعلیم کے لیے تیار کیا گیا —",
-    chatWithUs: "ہم سے رابطہ کریں"
-  }
+    designedWithLove: "Designed with ❤️ for Better Education —",
+    chatWithUs: "Chat with us",
+
+    // Faculty / Staff Section
+    facultyLabel: "ہماری فیکلٹی",
+    facultyTitle: "ہمارے ماہر اساتذہ سے ملیں",
+    facultySubtitle: "تجربہ کار اور قابل اساتذہ کی رہنمائی میں، آئندہ نسل کی صحت اور تعلیم کے شعبے میں پیشہ ورانہ تیاری۔",
+    facultyRoleLecturer: "لیکچرار",
+    facultyRoleInstructor: "انسٹرکٹر",
+    facultyRoleProfessor: "پروفیسر",
+    facultySpecialty: "تخصص",
+    facultyQualification: "تعلیمی قابلیت"
+  },
 };
 
 export type TranslationKey = keyof typeof translations.en;

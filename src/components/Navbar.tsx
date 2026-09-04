@@ -10,7 +10,9 @@ export default function Navbar() {
   const pathname = usePathname();
   const { toggleLanguage, setLang, isUrdu, t } = useLanguage();
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   const mainLinks = [
     { href: "/", label: t("navHome") },
@@ -25,6 +27,12 @@ export default function Navbar() {
     { href: "/principal-message", label: t("navPrincipalMessage"), icon: "🎓" },
     { href: "/faqs", label: t("navFaqs"), icon: "❓" },
     { href: "/gallery", label: t("navGallery"), icon: "🖼️" },
+  ];
+
+  const allMobileLinks = [
+    ...mainLinks,
+    ...moreLinks,
+    { href: "/contact", label: t("navContact") },
   ];
 
   const isMoreActive = moreLinks.some((l) => pathname === l.href);
@@ -44,6 +52,24 @@ export default function Navbar() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setMobileOpen(false);
+    setDropdownOpen(false);
+  }, [pathname]);
+
+  // Prevent body scroll when mobile menu open
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileOpen]);
 
   return (
     <header className={styles.headerWrapper}>
@@ -140,6 +166,8 @@ export default function Navbar() {
             <span className={styles.logoSubtitle}>{t("collegeSubName")}</span>
           </div>
         </Link>
+
+        {/* Desktop Nav Links */}
         <div className={styles.navLinks}>
           {mainLinks.map((link) => (
             <Link
@@ -241,7 +269,120 @@ export default function Navbar() {
             </Link>
           </div>
         </div>
+
+        {/* Mobile Hamburger Button */}
+        <button
+          type="button"
+          className={`${styles.hamburger} ${mobileOpen ? styles.hamburgerOpen : ""}`}
+          onClick={() => setMobileOpen(!mobileOpen)}
+          aria-label={mobileOpen ? "Close menu" : "Open menu"}
+          aria-expanded={mobileOpen}
+        >
+          <span className={styles.hamburgerLine} />
+          <span className={styles.hamburgerLine} />
+          <span className={styles.hamburgerLine} />
+        </button>
       </nav>
+
+      {/* Mobile Menu Overlay */}
+      {mobileOpen && (
+        <div
+          className={styles.mobileOverlay}
+          onClick={() => setMobileOpen(false)}
+          aria-hidden="true"
+        />
+      )}
+
+      {/* Mobile Slide-In Menu */}
+      <div
+        ref={mobileMenuRef}
+        className={`${styles.mobileMenu} ${mobileOpen ? styles.mobileMenuOpen : ""}`}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Mobile Navigation"
+      >
+        {/* Mobile Menu Header */}
+        <div className={styles.mobileMenuHeader}>
+          <Link href="/" className={styles.logo} onClick={() => setMobileOpen(false)}>
+            <img src="/logo.png" alt="Nisab College Logo" className={styles.mobileLogoImg} />
+            <div className={styles.logoText}>
+              <span className={styles.logoTitle}>{t("collegeName")}</span>
+              <span className={styles.logoSubtitle}>{t("collegeSubName")}</span>
+            </div>
+          </Link>
+          <button
+            type="button"
+            className={styles.mobileCloseBtn}
+            onClick={() => setMobileOpen(false)}
+            aria-label="Close menu"
+          >
+            ✕
+          </button>
+        </div>
+
+        {/* Language Toggle inside mobile menu */}
+        <div className={styles.mobileLangRow}>
+          <div className={styles.cupertinoSwitchWrapper}>
+            <span
+              className={`${styles.langLabel} ${!isUrdu ? styles.langLabelActive : ""}`}
+              onClick={() => { setLang("en"); }}
+            >
+              EN
+            </span>
+            <button
+              type="button"
+              role="switch"
+              aria-checked={isUrdu}
+              onClick={toggleLanguage}
+              className={`${styles.cupertinoSwitch} ${isUrdu ? styles.cupertinoSwitchActive : ""}`}
+            >
+              <span className={styles.cupertinoThumb} />
+            </button>
+            <span
+              className={`${styles.langLabel} ${isUrdu ? styles.langLabelActive : ""}`}
+              onClick={() => { setLang("ur"); }}
+            >
+              اردو
+            </span>
+          </div>
+        </div>
+
+        {/* Mobile Nav Links */}
+        <nav className={styles.mobileNav}>
+          {allMobileLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={`${styles.mobileLink} ${
+                pathname === link.href ? styles.mobileLinkActive : ""
+              }`}
+              onClick={() => setMobileOpen(false)}
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+
+        {/* Mobile Apply Button */}
+        <div className={styles.mobileApply}>
+          <Link
+            href="/admissions"
+            className="btn-primary"
+            style={{ width: "100%", textAlign: "center", display: "block", padding: "0.9rem" }}
+            onClick={() => setMobileOpen(false)}
+          >
+            {t("applyNow")}
+          </Link>
+        </div>
+
+        {/* Mobile Contact Info */}
+        <div className={styles.mobileContact}>
+          <a href="tel:03076813575">📞 0307-6813575</a>
+          <a href="https://wa.me/923076813575" target="_blank" rel="noopener noreferrer">
+            💬 WhatsApp Us
+          </a>
+        </div>
+      </div>
     </header>
   );
 }
